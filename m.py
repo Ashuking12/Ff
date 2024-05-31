@@ -217,14 +217,14 @@ bgmi_cooldown = {}
 COOLDOWN_TIME =0
 
 # Handler for /land command
-@bot.message_handler(commands=['bgmi'])
+@bot.message_handler(commands=['land'])
 def handle_bgmi(message):
     user_id = str(message.chat.id)
     if user_id in allowed_user_ids:
         # Check if the user is in admin_id (admins have no cooldown)
         if user_id not in admin_id:
             # Check if the user has run the command before and is still within the cooldown period
-            if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < 90000:
+            if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < 10:
                 response = "You Are On Cooldown. Please Wait 5min Before Running The /land Command Again."
                 bot.reply_to(message, response)
                 return
