@@ -214,7 +214,7 @@ def start_attack_reply(message, target, port, time):
 # Dictionary to store the last time each user ran the /land command
 bgmi_cooldown = {}
 
-COOLDOWN_TIME =0
+COOLDOWN_TIME =1
 
 # Handler for /land command
 @bot.message_handler(commands=['land'])
@@ -224,7 +224,7 @@ def handle_bgmi(message):
         # Check if the user is in admin_id (admins have no cooldown)
         if user_id not in admin_id:
             # Check if the user has run the command before and is still within the cooldown period
-            if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < 10:
+            if user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < 0:
                 response = "You Are On Cooldown. Please Wait 5min Before Running The /land Command Again."
                 bot.reply_to(message, response)
                 return
